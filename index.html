@@ -270,6 +270,10 @@
           text-align: left !important;
         }
 
+        .social-btn:last-child {
+          display: none !important;
+        }
+
         .search-bar input {
           display: none;
         }
@@ -651,15 +655,17 @@
         }
         /* OTP inputs fit comfortably on small phones */
         .otp-inputs {
-          gap: 10px;
+          gap: 12px; /* increased gap for <=768px */
           width: 100%;
-          justify-content: space-between;
+          justify-content: space-between; /* spread inputs across full width */
         }
         .otp-input {
-          flex: 1 1 0;
-          width: auto;
-          height: 44px;
-          font-size: 18px;
+          flex: 1 1 0; /* allow equal growth to fill row */
+          width: auto; /* full-width cells */
+          min-width: 0; /* prevent overflow */
+          height: auto; /* let aspect-ratio control height */
+          aspect-ratio: 1 / 1; /* make inputs square */
+          font-size: 16px;
         }
         .otp-title {
           font-size: 24px;
@@ -1178,15 +1184,17 @@
         }
         /* Extra-small phones: full-width inputs with slightly smaller height */
         .otp-inputs {
-          gap: 8px;
+          gap: 10px; /* increased gap for <=480px */
           width: 100%;
-          justify-content: space-between;
+          justify-content: space-between; /* spread inputs across full width */
         }
         .otp-input {
-          flex: 1 1 0;
+          flex: 1 1 0; /* allow equal growth to fill row */
           width: auto;
-          height: 40px;
-          font-size: 18px;
+          min-width: 0;
+          height: auto; /* let aspect-ratio control height */
+          aspect-ratio: 1 / 1; /* make inputs square */
+          font-size: 14px;
         }
         .otp-subtitle {
           font-size: 13px;
