@@ -1,1518 +1,1850 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OKX - Trade with Confidence</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background-color: #000000;
+        color: #ffffff;
+        line-height: 1.6;
+      }
+
+      /* Header Navigation */
+      .header {
+        background-color: #000000;
+        border-bottom: 1px solid #1a1a1a;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        padding: 0 20px;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        width: auto;
+        height: 32px;
+        max-width: none;
+      }
+
+      .nav-divider {
+        width: 1px;
+        height: 20px;
+        background-color: #333333;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 24px;
+      }
+
+      .nav-links li {
+        position: relative;
+      }
+
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: color 0.3s ease;
+        line-height: 1;
+      }
+
+      .nav-links a:hover {
+        color: #00d4aa;
+      }
+
+      .nav-links .dropdown::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 12px;
+        margin-left: 4px;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #1a1a1a;
+        border-radius: 6px;
+        padding: 6px 10px;
+        width: 200px;
+        height: 36px;
+      }
+
+      .search-bar input {
+        background: none;
+        border: none;
+        color: #ffffff;
+        outline: none;
+        flex: 1;
+        font-size: 14px;
+      }
+
+      .search-bar input::placeholder {
+        color: #666666;
+      }
+
+      .search-icon {
+        margin-right: 8px;
+        color: #ffffff;
+        font-size: 14px;
+      }
+
+      .auth-buttons {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .login-btn {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .signup-btn {
+        background-color: transparent;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        padding: 6px 14px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .signup-btn:hover {
+        background-color: #ffffff;
+        color: #000000;
+      }
+
+      .utility-icons {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-left: 16px;
+      }
+
+      #mobile-menu-btn {
+        display: none;
+      }
+
+      .icon {
+        color: #ffffff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        font-size: 14px;
+      }
+
+      .icon:hover {
+        color: #00d4aa;
+      }
+
+      /* Main Content Split Layout */
+      .main-content {
+        display: flex;
+        min-height: calc(100vh - 50px);
+      }
+
+      @media (max-width: 1018px) {
+        /* Make the mobile view white overall */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            line-height: 1.6;
+          background-color: #ffffff;
         }
 
-        /* Header Navigation */
-        .header {
-            background-color: #000000;
-            border-bottom: 1px solid #1a1a1a;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 50px;
-            padding: 0 20px;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            width: auto;
-            height: 32px;
-            max-width: none;
-        }
-
-        .nav-divider {
-            width: 1px;
-            height: 20px;
-            background-color: #333333;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 24px;
-        }
-
-        .nav-links li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: color 0.3s ease;
-            line-height: 1;
-        }
-
-        .nav-links a:hover {
-            color: #00d4aa;
-        }
-
-        .nav-links .dropdown::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 12px;
-            margin-left: 4px;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background-color: #1a1a1a;
-            border-radius: 6px;
-            padding: 6px 10px;
-            width: 200px;
-            height: 36px;
-        }
-
-        .search-bar input {
-            background: none;
-            border: none;
-            color: #ffffff;
-            outline: none;
-            flex: 1;
-            font-size: 14px;
-        }
-
-        .search-bar input::placeholder {
-            color: #666666;
-        }
-
-        .search-icon {
-            margin-right: 8px;
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        .auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .login-btn {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .signup-btn {
-            background-color: transparent;
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .signup-btn:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .utility-icons {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-left: 16px;
-        }
-
-        .icon {
-            color: #ffffff;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            font-size: 14px;
-        }
-
-        .icon:hover {
-            color: #00d4aa;
-        }
-
-        /* Main Content Split Layout */
         .main-content {
-            display: flex;
-            min-height: calc(100vh - 50px);
+          display: block;
+          padding: 0 !important;
         }
 
-        @media (max-width: 1018px) {
-            /* Make the mobile view white overall */
-            body { background-color: #ffffff; }
-
-            .main-content {
-                display: block;
-                padding: 0 !important;
-            }
-            
-            .left-section {
-                display: none !important;
-            }
-            
-            .right-section,
-            .right-section.otp-mode {
-                width: 100% !important;
-                margin-top: 0 !important;
-                padding: 56px 0 0 0 !important; /* further reduced top space for <=1018px */
-                background-color: #ffffff;
-                align-items: flex-start !important; /* force left align */
-                justify-content: flex-start !important; /* force left align */
-            }
-
-            .login-form,
-            .otp-view {
-                max-width: 100% !important;
-                width: 100% !important;
-                padding: 0 16px !important; /* small horizontal breathing room */
-                margin: 0 !important;
-                text-align: left; /* left align all text */
-            }
-
-            .login-form h2,
-            .otp-title {
-                text-align: left;
-                margin-top: 0; /* spacing handled by right-section padding */
-            }
-
-            .phone-input,
-            .form-group,
-            .divider,
-            .social-login {
-                width: 100%;
-            }
-
-            .form-input,
-            .next-btn,
-            .social-btn {
-                width: 100%;
-            }
-
-            .search-bar input {
-                display: none;
-            }
-
-            .search-bar {
-                width: auto;
-                padding: 6px;
-                background-color: transparent;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-divider {
-                display: none;
-            }
-
-            .utility-icons .fas:not(.fa-bars) {
-                display: none;
-            }
-
-            .utility-icons .far {
-                display: none;
-            }
-
-            .utility-icons::after {
-                content: '\f0c9';
-                font-family: 'Font Awesome 6 Free';
-                font-weight: 900;
-                color: #000000; /* icon visible on white background */
-                cursor: pointer;
-                transition: color 0.3s ease;
-                font-size: 14px;
-            }
-
-            .utility-icons::after:hover {
-                color: #00d4aa;
-            }
-        }
-
-        /* Left Section (40%) */
         .left-section {
-            width: 40%;
-            background-color: #121212;
-            padding: 140px 80px 80px 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+          display: none !important;
         }
 
-        .index_content-left__Q7NfZ {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .index_banner-container__P3Vew {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .index_banner-text-box__wA6AR h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ffffff;
-            line-height: 1.1;
-            margin-top: 0;
-            text-align: left;
-        }
-
-        .index_banner-text-box__wA6AR p {
-            font-size: 16px;
-            color: #cccccc;
-            margin-bottom: 0;
-            line-height: 1.4;
-            max-width: 450px;
-            text-align: left;
-        }
-
-        .index_banner-image-container__GqDWI {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .index_banner-image-container__GqDWI img {
-            max-width: calc(90% + 14px);
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0px, 0, 0.3);
-        }
-
-        /* Telegram Button */
-        .login.login-plain-button.community-container-v2 {
-            background-color: #1a1a1a;
-            border: none;
-            border-radius: 12px;
-            padding: 20px 25px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 88%;
-            margin: 0 auto;
-        }
-
-        .login.login-plain-button.community-container-v2:hover {
-            background-color: #2a2a2a;
-        }
-
-        .login.login-plain-button.community-container-v2 .title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #ffffff;
-            margin: 0 0 8px 0;
-            text-align: left;
-        }
-
-        .login.login-plain-button.community-container-v2 .description {
-            font-size: 12px;
-            color: #cccccc;
-            line-height: 1.4;
-            margin: 0;
-            text-align: left;
-        }
-
-        /* Right Section (60%) */
-        .right-section {
-            width: 60%;
-            background-color: #ffffff;
-            padding: 140px 40px; /* match left-section top padding for aligned first items */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Right section layout when showing OTP view */
+        .right-section,
         .right-section.otp-mode {
-            justify-content: flex-start; /* start vertically same as left */
-            align-items: center;         /* horizontal centering of the card */
-            padding-top: 140px;          /* match left-section top padding */
+          width: 100% !important;
+          margin-top: 0 !important;
+          padding: 56px 0 0 0 !important; /* further reduced top space for <=1018px */
+          background-color: #ffffff;
+          align-items: flex-start !important; /* force left align */
+          justify-content: flex-start !important; /* force left align */
         }
 
-        .login-form {
-            max-width: 500px;
-            width: 100%;
+        .login-form,
+        .otp-view {
+          max-width: 100% !important;
+          width: 100% !important;
+          padding: 0 16px !important; /* small horizontal breathing room */
+          margin: 0 !important;
+          text-align: left; /* left align all text */
         }
 
-        .login-form h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 30px;
-            text-align: left;
+        .login-form h2,
+        .otp-title {
+          text-align: left;
+          margin-top: 0; /* spacing handled by right-section padding */
         }
 
-        .login-tabs {
-            display: flex;
-            gap: 8px; /* reduce spacing between tabs */
-            margin-bottom: 20px;
-            padding-left: 0; /* align with heading */
-            align-items: flex-end; /* keep baseline stable when active border shows */
-        }
-
-        .login-tab {
-            padding: 10px 12px; /* tighter spacing */
-            color: #666666;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .login-tab:first-child {
-            padding-left: 0; /* make first tab text start exactly at same left edge as heading */
-        }
-
-        .login-tab.active {
-            color: #000000;
-            border-bottom-color: #000000;
-            font-weight: 500;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333333;
-            font-weight: 500;
-        }
-
-        .phone-input {
-            display: flex;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            background-color: #f8f8f8;
-            overflow: hidden;
-        }
-
-        .country-select {
-            padding: 12px 4px 12px 12px;
-            border: none;
-            background-color: transparent;
-            color: #333333;
-            min-width: 100px;
-            font-size: 14px;
-            outline: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 4px center;
-            background-size: 16px;
-            padding-right: 24px;
-        }
-
-        .form-input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background-color: transparent;
-            color: #333333;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #00d4aa;
-        }
-
-        .next-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #f0f0f0;
-            border: none;
-            border-radius: 8px;
-            color: #666666;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: not-allowed;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .next-btn.active {
-            background-color: #000000;
-            color: #ffffff;
-            cursor: pointer;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 30px 0;
-            color: #666666;
-            font-size: 14px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background-color: #e0e0e0;
-        }
-
-        .divider span {
-            padding: 0 20px;
-        }
-
+        .phone-input,
+        .form-group,
+        .divider,
         .social-login {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+          width: 100%;
+        }
+
+        .form-input,
+        .next-btn,
+        .social-btn {
+          width: 100%;
         }
 
         .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 12px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 9999px; /* fully rounded social buttons */
-            background-color: #ffffff;
-            color: #333333;
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            width: 100%;
+          padding: 8px 16px;
+          font-size: 12px;
         }
 
-        .social-btn:hover {
-            background-color: #f8f8f8;
-        }
-
-        /* QR layout */
-        .qr-container {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .qr-box {
-            width: 260px;
-            height: 260px;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        .qr-phone-video {
-            width: 300px;
-            height: 300px;
-            border: 8px solid #000;
-            border-radius: 36px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fff;
-        }
-
-        .qr-help {
-            margin-top: 16px;
-            color: #666666;
-            font-size: 12px;
-        }
-
-        @media (max-width: 768px) {
-            .qr-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .qr-phone-video { width: 260px; height: 260px; }
-            .qr-box { width: 220px; height: 220px; }
-            /* hide QR tab entirely below 768px */
-            .login-tab.qr-tab { display: none !important; }
-            /* OTP inputs fit comfortably on small phones */
-            .otp-inputs { gap: 10px; width: 100%; justify-content: space-between; }
-            .otp-input { flex: 1 1 0; width: auto; height: 44px; font-size: 18px; }
-            .otp-title { font-size: 24px; }
-            .otp-resend { padding: 12px; font-size: 13px; }
+        .social-btn img {
+          width: 20px;
+          height: 20px;
         }
 
         .social-btn i {
-            font-size: 16px;
+          font-size: 14px;
         }
 
-        /* OTP View */
-        .otp-view {
-            max-width: 600px;
-            width: 100%;
+        .social-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
         }
 
-        .otp-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 12px;
-            text-align: left;
+        .recaptcha-note {
+          text-align: left !important;
         }
 
-        .otp-subtitle {
-            color: #666666;
-            font-size: 14px;
-            margin-bottom: 24px;
-            text-align: left;
+        .search-bar input {
+          display: none;
         }
 
+        .search-bar {
+          width: auto;
+          padding: 6px;
+          background-color: transparent;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-divider {
+          display: none;
+        }
+
+        .auth-buttons .login-btn {
+          display: none;
+        }
+
+        .utility-icons .fas:not(.fa-search):not(.fa-bars) {
+          display: none !important;
+        }
+
+        .utility-icons .far {
+          display: none !important;
+        }
+
+        #mobile-menu-btn {
+          display: block !important;
+          color: #ffffff !important;
+          cursor: pointer;
+          transition: color 0.3s ease;
+          font-size: 18px;
+          margin-left: 2px;
+        }
+
+        #mobile-menu-btn:hover {
+          color: #00d4aa !important;
+        }
+
+        .nav-container {
+          padding: 0 16px;
+        }
+
+        .nav-right {
+          gap: 4px;
+        }
+
+        .auth-buttons {
+          gap: 6px;
+        }
+
+        .signup-btn {
+          padding: 4px 10px;
+          font-size: 11px;
+        }
+      }
+
+      /* Left Section (40%) */
+      .left-section {
+        width: 40%;
+        background-color: #121212;
+        padding: 140px 80px 80px 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .index_content-left__Q7NfZ {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .index_banner-container__P3Vew {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .index_banner-text-box__wA6AR h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #ffffff;
+        line-height: 1.1;
+        margin-top: 0;
+        text-align: left;
+      }
+
+      .index_banner-text-box__wA6AR p {
+        font-size: 16px;
+        color: #cccccc;
+        margin-bottom: 0;
+        line-height: 1.4;
+        max-width: 450px;
+        text-align: left;
+      }
+
+      .index_banner-image-container__GqDWI {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .index_banner-image-container__GqDWI img {
+        max-width: calc(90% + 14px);
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0px, 0, 0.3);
+      }
+
+      /* Telegram Button */
+      .login.login-plain-button.community-container-v2 {
+        background-color: #1a1a1a;
+        border: none;
+        border-radius: 12px;
+        padding: 20px 25px;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 88%;
+        margin: 0 auto;
+      }
+
+      .login.login-plain-button.community-container-v2:hover {
+        background-color: #2a2a2a;
+      }
+
+      .login.login-plain-button.community-container-v2 .title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #ffffff;
+        margin: 0 0 8px 0;
+        text-align: left;
+      }
+
+      .login.login-plain-button.community-container-v2 .description {
+        font-size: 12px;
+        color: #cccccc;
+        line-height: 1.4;
+        margin: 0;
+        text-align: left;
+      }
+
+      /* Right Section (60%) */
+      .right-section {
+        width: 60%;
+        background-color: #ffffff;
+        padding: 140px 40px; /* match left-section top padding for aligned first items */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Right section layout when showing OTP view */
+      .right-section.otp-mode {
+        justify-content: flex-start; /* start vertically same as left */
+        align-items: center; /* horizontal centering of the card */
+        padding-top: 140px; /* match left-section top padding */
+      }
+
+      .login-form {
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .login-form h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .login-tabs {
+        display: flex;
+        gap: 8px; /* reduce spacing between tabs */
+        margin-bottom: 20px;
+        padding-left: 0; /* align with heading */
+        align-items: flex-end; /* keep baseline stable when active border shows */
+      }
+
+      .login-tab {
+        padding: 10px 12px; /* tighter spacing */
+        color: #666666;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+        font-size: 14px;
+      }
+
+      .login-tab:first-child {
+        padding-left: 0; /* make first tab text start exactly at same left edge as heading */
+      }
+
+      .login-tab.active {
+        color: #000000;
+        border-bottom-color: #000000;
+        font-weight: 500;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333333;
+        font-weight: 500;
+      }
+
+      .phone-input {
+        display: flex;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        background-color: #f8f8f8;
+        overflow: hidden;
+      }
+
+      .country-select {
+        padding: 12px 2px 12px 12px;
+        border: none;
+        background-color: transparent;
+        color: #333333;
+        min-width: 100px;
+        font-size: 14px;
+        outline: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 2px center;
+        background-size: 16px;
+        padding-right: 20px;
+      }
+
+      .form-input {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        background-color: transparent;
+        color: #333333;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #00d4aa;
+      }
+
+      .next-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 8px;
+        color: #666666;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: not-allowed;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+      }
+
+      .next-btn.active {
+        background-color: #000000;
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        margin: 30px 0;
+        color: #666666;
+        font-size: 14px;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: #e0e0e0;
+      }
+
+      .divider span {
+        padding: 0 20px;
+      }
+
+      .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 9999px; /* fully rounded social buttons */
+        background-color: #ffffff;
+        color: #333333;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+
+      .social-btn:hover {
+        background-color: #f8f8f8;
+      }
+
+      /* QR layout */
+      .qr-container {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .qr-box {
+        width: 260px;
+        height: 260px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .qr-phone-video {
+        width: 300px;
+        height: 300px;
+        border: 8px solid #000;
+        border-radius: 36px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+      }
+
+      .qr-help {
+        margin-top: 16px;
+        color: #666666;
+        font-size: 12px;
+      }
+
+      @media (max-width: 768px) {
+        .qr-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .qr-phone-video {
+          width: 260px;
+          height: 260px;
+        }
+        .qr-box {
+          width: 220px;
+          height: 220px;
+        }
+        /* hide QR tab entirely below 768px */
+        .login-tab.qr-tab {
+          display: none !important;
+        }
+        /* OTP inputs fit comfortably on small phones */
         .otp-inputs {
-            display: flex;
-            gap: 20px; /* increased space between inputs */
-            margin: 24px 0 24px 0;
+          gap: 10px;
+          width: 100%;
+          justify-content: space-between;
         }
-
-        .otp-box {
-            width: 56px;
-            height: 56px;
-            border-radius: 10px;
-            border: 1px solid #e6e6e6;
-            background: #f7f7f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: #000;
-        }
-
         .otp-input {
-            width: 56px;
-            height: 56px;
-            border-radius: 10px;
-            border: 1px solid #e6e6e6;
-            background: #f7f7f7;
-            text-align: center;
-            font-size: 22px;
-            color: #000;
-            outline: none;
+          flex: 1 1 0;
+          width: auto;
+          height: 44px;
+          font-size: 18px;
         }
-        .otp-input:focus { border-color: #000; background: #fff; }
-
+        .otp-title {
+          font-size: 24px;
+        }
         .otp-resend {
-            width: 100%;
-            padding: 14px;
-            background: #000;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 8px;
-            cursor: pointer;
+          padding: 12px;
+          font-size: 13px;
         }
+      }
 
-        .otp-help {
-            color: #666666;
-            font-size: 13px;
-            margin-top: 16px;
-        }
+      .social-btn i {
+        font-size: 16px;
+      }
 
-        .otp-help a { color: #0a58ca; text-decoration: none; }
+      .social-btn img {
+        width: 24px;
+        height: 24px;
+      }
 
-        /* Mobile App Preview */
-        .app-preview {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 50px;
-            width: 100%;
-        }
+      /* OTP View */
+      .otp-view {
+        max-width: 600px;
+        width: 100%;
+      }
 
-        .trading-app-image {
-            max-width: 90%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0px, 0, 0.3);
-        }
+      .otp-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 12px;
+        text-align: left;
+      }
 
-        /* Mobile Trading App Mockup */
-        .mobile-trading-app {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
+      .otp-subtitle {
+        color: #666666;
+        font-size: 14px;
+        margin-bottom: 24px;
+        text-align: left;
+      }
 
+      .otp-inputs {
+        display: flex;
+        gap: 20px; /* increased space between inputs */
+        margin: 24px 0 24px 0;
+      }
+
+      .otp-box {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        border: 1px solid #e6e6e6;
+        background: #f7f7f7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #000;
+      }
+
+      .otp-input {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        border: 1px solid #e6e6e6;
+        background: #f7f7f7;
+        text-align: center;
+        font-size: 22px;
+        color: #000;
+        outline: none;
+      }
+      .otp-input:focus {
+        border-color: #000;
+        background: #fff;
+      }
+
+      .otp-resend {
+        width: 100%;
+        padding: 14px;
+        background: #000;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 8px;
+        cursor: pointer;
+      }
+
+      .otp-help {
+        color: #666666;
+        font-size: 13px;
+        margin-top: 16px;
+      }
+
+      .otp-help a {
+        color: #0a58ca;
+        text-decoration: none;
+      }
+
+      /* Mobile App Preview */
+      .app-preview {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        width: 100%;
+      }
+
+      .trading-app-image {
+        max-width: 90%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0px, 0, 0.3);
+      }
+
+      /* Mobile Trading App Mockup */
+      .mobile-trading-app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .phone-frame {
+        width: 280px;
+        height: 560px;
+        background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+        border-radius: 30px;
+        padding: 8px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        border-radius: 25px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        overflow: hidden;
+      }
+
+      /* App Header */
+      .app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+      }
+
+      .back-arrow {
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      .trading-pair {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .trading-pair i {
+        font-size: 12px;
+        color: #666666;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 15px;
+        color: #ffffff;
+        font-size: 14px;
+      }
+
+      /* App Tabs */
+      .app-tabs {
+        display: flex;
+        gap: 20px;
+        border-bottom: 1px solid #333333;
+        padding-bottom: 10px;
+      }
+
+      .app-tabs .tab {
+        color: #666666;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 5px 0;
+        position: relative;
+      }
+
+      .app-tabs .tab.active {
+        color: #00d4aa;
+      }
+
+      .app-tabs .tab.active::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #00d4aa;
+      }
+
+      /* Price Section */
+      .price-section {
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .current-price {
+        font-size: 32px;
+        font-weight: 700;
+        color: #00d4aa;
+        margin-bottom: 5px;
+      }
+
+      .price-details {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        font-size: 14px;
+      }
+
+      .price-usd {
+        color: #cccccc;
+      }
+
+      .price-change.positive {
+        color: #00d4aa;
+      }
+
+      .price-change.negative {
+        color: #ff6b6b;
+      }
+
+      /* Badges */
+      .badges {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 10px 0;
+      }
+
+      .badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .badge-red {
+        background-color: #ff4757;
+        color: #ffffff;
+      }
+
+      .badge-orange {
+        background-color: #ffa502;
+        color: #ffffff;
+      }
+
+      .badge-green {
+        background-color: #2ed573;
+        color: #ffffff;
+      }
+
+      /* Stats Section */
+      .stats-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 15px 0;
+      }
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .stat-label {
+        font-size: 11px;
+        color: #666666;
+      }
+
+      .stat-value {
+        font-size: 13px;
+        color: #ffffff;
+        font-weight: 500;
+      }
+
+      /* Chart Controls */
+      .chart-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 15px 0;
+      }
+
+      .timeframes {
+        display: flex;
+        gap: 10px;
+      }
+
+      .timeframe {
+        padding: 6px 10px;
+        border-radius: 15px;
+        font-size: 11px;
+        color: #666666;
+        cursor: pointer;
+        background-color: #1a1a1a;
+      }
+
+      .timeframe.active {
+        background-color: #00d4aa;
+        color: #000000;
+      }
+
+      .timeframe.dropdown {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .chart-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #666666;
+        font-size: 11px;
+      }
+
+      .action-item.dropdown {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        cursor: pointer;
+      }
+
+      /* Moving Averages */
+      .moving-averages {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #666666;
+        margin: 10px 0;
+      }
+
+      /* Chart Area */
+      .chart-area {
+        flex: 1;
+        position: relative;
+        margin-top: 10px;
+      }
+
+      .chart-container {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .price-labels {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 10px;
+        color: #666666;
+        z-index: 2;
+      }
+
+      .candlestick-chart {
+        display: flex;
+        align-items: end;
+        gap: 3px;
+        height: 100%;
+        padding: 10px 0;
+        position: relative;
+      }
+
+      .candlestick {
+        width: 8px;
+        background-color: #00d4aa;
+        border-radius: 1px;
+        position: relative;
+      }
+
+      .candlestick.green {
+        background-color: #00d4aa;
+      }
+
+      .candlestick.red {
+        background-color: #ff6b6b;
+      }
+
+      .candlestick:nth-child(1) {
+        height: 60%;
+      }
+      .candlestick:nth-child(2) {
+        height: 45%;
+      }
+      .candlestick:nth-child(3) {
+        height: 70%;
+      }
+      .candlestick:nth-child(4) {
+        height: 55%;
+      }
+      .candlestick:nth-child(5) {
+        height: 40%;
+      }
+      .candlestick:nth-child(6) {
+        height: 65%;
+      }
+      .candlestick:nth-child(7) {
+        height: 50%;
+      }
+      .candlestick:nth-child(8) {
+        height: 35%;
+      }
+
+      .current-price-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        padding: 4px 8px;
+        border-radius: 10px;
+        font-size: 10px;
+        z-index: 3;
+      }
+
+      /* Responsive Design for Mobile App */
+      @media (max-width: 768px) {
         .phone-frame {
-            width: 280px;
-            height: 560px;
-            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-            border-radius: 30px;
-            padding: 8px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
+          width: 260px;
+          height: 520px;
         }
 
         .phone-screen {
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            border-radius: 25px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            overflow: hidden;
-        }
-
-        /* App Header */
-        .app-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-
-        .back-arrow {
-            color: #ffffff;
-            font-size: 16px;
-        }
-
-        .trading-pair {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .trading-pair i {
-            font-size: 12px;
-            color: #666666;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 15px;
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        /* App Tabs */
-        .app-tabs {
-            display: flex;
-            gap: 20px;
-            border-bottom: 1px solid #333333;
-            padding-bottom: 10px;
-        }
-
-        .app-tabs .tab {
-            color: #666666;
-            font-size: 14px;
-            cursor: pointer;
-            padding: 5px 0;
-            position: relative;
-        }
-
-        .app-tabs .tab.active {
-            color: #00d4aa;
-        }
-
-        .app-tabs .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #00d4aa;
-        }
-
-        /* Price Section */
-        .price-section {
-            text-align: center;
-            margin: 10px 0;
+          padding: 15px;
+          gap: 12px;
         }
 
         .current-price {
-            font-size: 32px;
-            font-weight: 700;
-            color: #00d4aa;
-            margin-bottom: 5px;
+          font-size: 28px;
         }
 
-        .price-details {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 14px;
+        .app-tabs {
+          gap: 15px;
         }
 
-        .price-usd {
-            color: #cccccc;
+        .app-tabs .tab {
+          font-size: 12px;
         }
 
-        .price-change.positive {
-            color: #00d4aa;
-        }
-
-        .price-change.negative {
-            color: #ff6b6b;
-        }
-
-        /* Badges */
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 10px 0;
-        }
-
-        .badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .badge-red {
-            background-color: #ff4757;
-            color: #ffffff;
-        }
-
-        .badge-orange {
-            background-color: #ffa502;
-            color: #ffffff;
-        }
-
-        .badge-green {
-            background-color: #2ed573;
-            color: #ffffff;
-        }
-
-        /* Stats Section */
         .stats-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
+          gap: 12px;
         }
 
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: #666666;
-        }
-
+        .stat-label,
         .stat-value {
-            font-size: 13px;
-            color: #ffffff;
-            font-weight: 500;
-        }
-
-        /* Chart Controls */
-        .chart-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
+          font-size: 10px;
         }
 
         .timeframes {
-            display: flex;
-            gap: 10px;
+          gap: 8px;
         }
 
         .timeframe {
-            padding: 6px 10px;
-            border-radius: 15px;
-            font-size: 11px;
-            color: #666666;
-            cursor: pointer;
-            background-color: #1a1a1a;
+          padding: 5px 8px;
+          font-size: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .phone-frame {
+          width: 240px;
+          height: 480px;
         }
 
-        .timeframe.active {
-            background-color: #00d4aa;
-            color: #000000;
+        .phone-screen {
+          padding: 12px;
+          gap: 10px;
         }
 
-        .timeframe.dropdown {
-            display: flex;
-            align-items: center;
-            gap: 3px;
+        .current-price {
+          font-size: 24px;
         }
 
-        .chart-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #666666;
-            font-size: 11px;
+        .app-tabs {
+          gap: 12px;
         }
 
-        .action-item.dropdown {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            cursor: pointer;
+        .app-tabs .tab {
+          font-size: 11px;
         }
 
-        /* Moving Averages */
-        .moving-averages {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            color: #666666;
-            margin: 10px 0;
+        .badges {
+          gap: 6px;
         }
 
-        /* Chart Area */
-        .chart-area {
-            flex: 1;
-            position: relative;
-            margin-top: 10px;
+        .badge {
+          padding: 3px 6px;
+          font-size: 9px;
         }
-
-        .chart-container {
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+        /* Extra-small phones: full-width inputs with slightly smaller height */
+        .otp-inputs {
+          gap: 8px;
+          width: 100%;
+          justify-content: space-between;
         }
-
-        .price-labels {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 10px;
-            color: #666666;
-            z-index: 2;
+        .otp-input {
+          flex: 1 1 0;
+          width: auto;
+          height: 40px;
+          font-size: 18px;
         }
-
-        .candlestick-chart {
-            display: flex;
-            align-items: end;
-            gap: 3px;
-            height: 100%;
-            padding: 10px 0;
-            position: relative;
+        .otp-subtitle {
+          font-size: 13px;
         }
-
-        .candlestick {
-            width: 8px;
-            background-color: #00d4aa;
-            border-radius: 1px;
-            position: relative;
-        }
-
-        .candlestick.green {
-            background-color: #00d4aa;
-        }
-
-        .candlestick.red {
-            background-color: #ff6b6b;
-        }
-
-        .candlestick:nth-child(1) { height: 60%; }
-        .candlestick:nth-child(2) { height: 45%; }
-        .candlestick:nth-child(3) { height: 70%; }
-        .candlestick:nth-child(4) { height: 55%; }
-        .candlestick:nth-child(5) { height: 40%; }
-        .candlestick:nth-child(6) { height: 65%; }
-        .candlestick:nth-child(7) { height: 50%; }
-        .candlestick:nth-child(8) { height: 35%; }
-
-        .current-price-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #ffffff;
-            padding: 4px 8px;
-            border-radius: 10px;
-            font-size: 10px;
-            z-index: 3;
-        }
-
-        /* Responsive Design for Mobile App */
-        @media (max-width: 768px) {
-            .phone-frame {
-                width: 260px;
-                height: 520px;
-            }
-
-            .phone-screen {
-                padding: 15px;
-                gap: 12px;
-            }
-
-            .current-price {
-                font-size: 28px;
-            }
-
-            .app-tabs {
-                gap: 15px;
-            }
-
-            .app-tabs .tab {
-                font-size: 12px;
-            }
-
-            .stats-section {
-                gap: 12px;
-            }
-
-            .stat-label, .stat-value {
-                font-size: 10px;
-            }
-
-            .timeframes {
-                gap: 8px;
-            }
-
-            .timeframe {
-                padding: 5px 8px;
-                font-size: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .phone-frame {
-                width: 240px;
-                height: 480px;
-            }
-
-            .phone-screen {
-                padding: 12px;
-                gap: 10px;
-            }
-
-            .current-price {
-                font-size: 24px;
-            }
-
-            .app-tabs {
-                gap: 12px;
-            }
-
-            .app-tabs .tab {
-                font-size: 11px;
-            }
-
-            .badges {
-                gap: 6px;
-            }
-
-            .badge {
-                padding: 3px 6px;
-                font-size: 9px;
-            }
-            /* Extra-small phones: full-width inputs with slightly smaller height */
-            .otp-inputs { gap: 8px; width: 100%; justify-content: space-between; }
-            .otp-input { flex: 1 1 0; width: auto; height: 40px; font-size: 18px; }
-            .otp-subtitle { font-size: 13px; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header Navigation -->
     <header class="header">
-        <div class="nav-container">
-            <div class="nav-left">
-                <div class="logo">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAABICAQAAADSOpYzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAHdElNRQfmBwMNKhI4Vg/yAAABMklEQVR42u3aQW6DMBBAUZyT5eSFE/RInS5psOKx8Scq0n9ZNXjA+VE3VpZFkiRJkiShYo0rrYPPWyf3+3VYXZL138nTuudLxLVfVCmHrcXY+uqjteejPF7/XH5G1teXe+ebt1E/Q0IMCTEkxJAQQ0IMCTEkxJAQQ0IMCTEkxJCQ+4XcBq+Orj87n54oPlv3iWc2Xk3A55tzZs8rd+l55OT54PB5ZLrhMjd/2M3keeXufv/a/5QhIYaEGBJiSIghIYaEGBJiSIghIYaEGBJiSEgaMjtG+/B+tw/f8eVqlPq1X7xYlX5wfTXfPj/095Hv1tdfRPLJ/X3kvRkSYkiIISGGhBgSYkiIISGGhBgSYkiIISGGhDwuOOH7a+t4p//qmflticYrf946OS9JkiRJkk75BUgSur6QrNyYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA3LTAzVDEzOjQyOjE4KzAwOjAwKpbwNQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wNy0wM1QxMzo0MjoxOCswMDowMFvLSIkAAAAASUVORK5CYII=" alt="OKX">
-                </div>
-                
-                <div class="nav-divider"></div>
-                
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#" class="dropdown">Buy crypto</a></li>
-                        <li><a href="#">Markets</a></li>
-                        <li><a href="#" class="dropdown">Trade</a></li>
-                        <li><a href="#" class="dropdown">Grow</a></li>
-                        <li><a href="#" class="dropdown">Institutional</a></li>
-                        <li><a href="#">Learn</a></li>
-                        <li><a href="#" class="dropdown">More</a></li>
-                    </ul>
-                </nav>
-            </div>
+      <div class="nav-container">
+        <div class="nav-left">
+          <div class="logo">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAABICAQAAADSOpYzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAAFiUAABYlAUlSJPAAAAAHdElNRQfmBwMNKhI4Vg/yAAABMklEQVR42u3aQW6DMBBAUZyT5eSFE/RInS5psOKx8Scq0n9ZNXjA+VE3VpZFkiRJkiShYo0rrYPPWyf3+3VYXZL138nTuudLxLVfVCmHrcXY+uqjteejPF7/XH5G1teXe+ebt1E/Q0IMCTEkxJAQQ0IMCTEkxJAQQ0IMCTEkxJCQ+4XcBq+Orj87n54oPlv3iWc2Xk3A55tzZs8rd+l55OT54PB5ZLrhMjd/2M3keeXufv/a/5QhIYaEGBJiSIghIYaEGBJiSIghIYaEGBJiSEgaMjtG+/B+tw/f8eVqlPq1X7xYlX5wfTXfPj/095Hv1tdfRPLJ/X3kvRkSYkiIISGGhBgSYkiIISGGhBgSYkiIISGGhDwuOOH7a+t4p//qmflticYrf946OS9JkiRJkk75BUgSur6QrNyYAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA3LTAzVDEzOjQyOjE4KzAwOjAwKpbwNQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wNy0wM1QxMzo0MjoxOCswMDowMFvLSIkAAAAASUVORK5CYII="
+              alt="OKX"
+            />
+          </div>
 
-            <div class="nav-right">
-                <div class="search-bar">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Search crypto">
-                </div>
+          <div class="nav-divider"></div>
 
-                <div class="auth-buttons">
-                    <a href="#" class="login-btn">Log in</a>
-                    <a href="#" class="signup-btn">Sign up</a>
-                </div>
-
-                <div class="utility-icons">
-                    <i class="fas fa-download icon"></i>
-                    <i class="fas fa-bell icon"></i>
-                    <i class="far fa-question-circle icon"></i>
-                    <i class="fas fa-globe icon"></i>
-                </div>
-            </div>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#" class="dropdown">Buy crypto</a></li>
+              <li><a href="#">Markets</a></li>
+              <li><a href="#" class="dropdown">Trade</a></li>
+              <li><a href="#" class="dropdown">Grow</a></li>
+              <li><a href="#" class="dropdown">Institutional</a></li>
+              <li><a href="#">Learn</a></li>
+              <li><a href="#" class="dropdown">More</a></li>
+            </ul>
+          </nav>
         </div>
+
+        <div class="nav-right">
+          <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search crypto" />
+          </div>
+
+          <div class="auth-buttons">
+            <a href="#" class="login-btn">Log in</a>
+            <a href="#" class="signup-btn">Sign up</a>
+          </div>
+
+          <div class="utility-icons">
+            <i class="fas fa-download icon"></i>
+            <i class="fas fa-bell icon"></i>
+            <i class="far fa-question-circle icon"></i>
+            <i class="fas fa-globe icon"></i>
+            <i class="fas fa-bars mobile-menu-icon" id="mobile-menu-btn"></i>
+          </div>
+        </div>
+      </div>
     </header>
 
     <!-- Main Content Split Layout -->
     <div class="main-content">
-        <!-- Left Section (40%) -->
-        <div class="left-section">
-            <div class="index_content-left__Q7NfZ">
-                <div>
-                    <div class="index_banner-container__P3Vew">
-                        <div class="index_banner-text-box__wA6AR">
-                            <h1>Trade with confidence</h1>
-                            <p>We don't lend out customer funds, which is verified through our regularly published Proof of Reserves audits.</p>
-                        </div>
-                        <div class="index_banner-image-container__GqDWI">
-                            <img src="https://www.okx.com/cdn/assets/imgs/243/5AD5609D76BF42F4.png?x-oss-process=image/format,webp/resize,w_600,h_680" alt="OKX Trading Platform" style="max-width: 50%; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);">
-                        </div>
-                    </div>
-                    <button type="button" class="login login-plain-button community-container-v2">
-                        <p class="title"><span>Join our Telegram group</span></p>
-                        <p class="description">Ask questions, get answers, and chat with other traders to shape the crypto future together</p>
-                    </button>
-                </div>
+      <!-- Left Section (40%) -->
+      <div class="left-section">
+        <div class="index_content-left__Q7NfZ">
+          <div>
+            <div class="index_banner-container__P3Vew">
+              <div class="index_banner-text-box__wA6AR">
+                <h1>Trade with confidence</h1>
+                <p>
+                  We don't lend out customer funds, which is verified through
+                  our regularly published Proof of Reserves audits.
+                </p>
+              </div>
+              <div class="index_banner-image-container__GqDWI">
+                <img
+                  src="https://www.okx.com/cdn/assets/imgs/243/5AD5609D76BF42F4.png?x-oss-process=image/format,webp/resize,w_600,h_680"
+                  alt="OKX Trading Platform"
+                  style="
+                    max-width: 50%;
+                    height: auto;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                  "
+                />
+              </div>
             </div>
+            <button
+              type="button"
+              class="login login-plain-button community-container-v2"
+            >
+              <p class="title"><span>Join our Telegram group</span></p>
+              <p class="description">
+                Ask questions, get answers, and chat with other traders to shape
+                the crypto future together
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section (60%) -->
+      <div class="right-section">
+        <div class="login-form" id="login-form">
+          <h2>Log in</h2>
+
+          <div class="login-tabs">
+            <div class="login-tab active">Phone</div>
+            <div class="login-tab">Email / Sub-account</div>
+            <div class="login-tab qr-tab">QR code</div>
+          </div>
+
+          <div class="form-group" id="phone-group">
+            <div class="phone-input">
+              <select class="country-select">
+                <option>+254</option>
+                <option>+1</option>
+                <option>+44</option>
+                <option>+86</option>
+              </select>
+              <input
+                type="tel"
+                class="form-input"
+                placeholder="Phone number"
+                id="phone-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group" id="email-group" style="display: none">
+            <div class="phone-input">
+              <input
+                type="email"
+                class="form-input"
+                placeholder="Email address"
+                id="email-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group" id="password-group" style="display: none">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+              "
+            >
+              <label style="color: #000000; font-weight: 600; font-size: 14px"
+                >Password</label
+              >
+              <a
+                href="#"
+                style="
+                  color: #000000;
+                  text-decoration: none;
+                  font-size: 14px;
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                "
+              >
+                Forgot your password?
+                <i class="fas fa-chevron-right" style="font-size: 12px"></i>
+              </a>
+            </div>
+            <div class="phone-input">
+              <input
+                type="password"
+                class="form-input"
+                placeholder="Password"
+                id="password-input"
+              />
+              <i
+                class="fas fa-eye-slash"
+                style="color: #666666; padding: 12px; cursor: pointer"
+                id="password-toggle"
+              ></i>
+            </div>
+          </div>
+
+          <button class="next-btn" id="next-btn">Next</button>
+
+          <!-- QR Tab Content -->
+          <div id="qr-group" style="display: none">
+            <div class="qr-container">
+              <div class="qr-box">
+                <img
+                  id="qr-image"
+                  alt="Login QR"
+                  src=""
+                  style="width: 100%; height: 100%; object-fit: contain"
+                />
+              </div>
+              <div class="qr-phone-video">
+                <video
+                  src="https://www.okx.com/cdn/oksupport/common/20250610-103521.e94f33ac8bc3a1.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  style="width: 100%; height: 100%; object-fit: cover"
+                ></video>
+              </div>
+            </div>
+            <div class="qr-help">
+              Tap the profile icon in the
+              <a href="#" style="color: #0a58ca; text-decoration: none"
+                >OKX app</a
+              >
+              and select the top right icon to scan the QR code
+            </div>
+          </div>
+
+          <div class="divider" id="social-divider">
+            <span>Or continue with</span>
+          </div>
+
+          <div class="social-login" id="social-login">
+            <a href="#" class="social-btn">
+              <i
+                class="icon iconfont btn-icon okx-aas-passkeys btn-icon-leading"
+                role="img"
+                aria-hidden="true"
+              ></i>
+              Passkey
+            </a>
+            <a href="#" class="social-btn">
+              <picture class="login login-picture login-picture-font">
+                <source
+                  srcset="
+                    https://www.okx.com/cdn/assets/imgs/206/C6AD6904C3269AE4.png?x-oss-process=image/format,webp/ignore-error,1
+                  "
+                />
+                <img
+                  class="index_social-icon__taV-3"
+                  alt="Google"
+                  src="https://www.okx.com/cdn/assets/imgs/206/C6AD6904C3269AE4.png"
+                />
+              </picture>
+              Google
+            </a>
+            <a href="#" class="social-btn">
+              <picture class="login login-picture login-picture-font">
+                <source
+                  srcset="
+                    https://www.okx.com/cdn/assets/imgs/237/C2A4DB24A8617E46.png?x-oss-process=image/format,webp/ignore-error,1
+                  "
+                />
+                <img
+                  class="index_social-icon__taV-3"
+                  alt="Apple"
+                  src="https://www.okx.com/cdn/assets/imgs/237/C2A4DB24A8617E46.png"
+                />
+              </picture>
+              Apple
+            </a>
+            <a href="#" class="social-btn">
+              <picture class="login login-picture login-picture-font">
+                <source
+                  srcset="
+                    https://www.okx.com/cdn/assets/imgs/206/42EDE0426F1F75F5.png?x-oss-process=image/format,webp/ignore-error,1
+                  "
+                />
+                <img
+                  class="index_social-icon__taV-3"
+                  alt="Telegram"
+                  src="https://www.okx.com/cdn/assets/imgs/206/42EDE0426F1F75F5.png"
+                />
+              </picture>
+              Telegram
+            </a>
+            <a href="#" class="social-btn">
+              <i class="fas fa-wallet"></i>
+              Wallet
+            </a>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              margin-top: 30px;
+              font-size: 14px;
+              color: #666666;
+            "
+            id="signup-note"
+          >
+            Don't have an account?
+            <a
+              href="#"
+              style="
+                color: #000000;
+                text-decoration: underline;
+                font-weight: 500;
+              "
+              >Sign up</a
+            >
+          </div>
+
+          <div
+            class="recaptcha-note"
+            id="recaptcha-note"
+            style="
+              text-align: center;
+              margin-top: 20px;
+              font-size: 12px;
+              color: #999999;
+            "
+          >
+            This site is protected by Google reCAPTCHA to ensure you're not a
+            bot.
+            <a
+              href="#"
+              style="
+                color: #000000;
+                text-decoration: underline;
+                font-weight: 500;
+              "
+              >Learn more</a
+            >
+          </div>
         </div>
 
-        <!-- Right Section (60%) -->
-        <div class="right-section">
-            <div class="login-form" id="login-form">
-                <h2>Log in</h2>
-                
-                <div class="login-tabs">
-                    <div class="login-tab active">Phone</div>
-                    <div class="login-tab">Email / Sub-account</div>
-                    <div class="login-tab qr-tab">QR code</div>
-                </div>
-
-                <div class="form-group" id="phone-group">
-                    <div class="phone-input">
-                        <select class="country-select">
-                            <option>+254</option>
-                            <option>+1</option>
-                            <option>+44</option>
-                            <option>+86</option>
-                        </select>
-                        <input type="tel" class="form-input" placeholder="Phone number" id="phone-input">
-                    </div>
-                </div>
-
-                <div class="form-group" id="email-group" style="display: none;">
-                    <div class="phone-input">
-                        <input type="email" class="form-input" placeholder="Email address" id="email-input">
-                    </div>
-                </div>
-
-                <div class="form-group" id="password-group" style="display: none;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <label style="color: #000000; font-weight: 600; font-size: 14px;">Password</label>
-                        <a href="#" style="color: #000000; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 4px;">
-                            Forgot your password? <i class="fas fa-chevron-right" style="font-size: 12px;"></i>
-                        </a>
-                    </div>
-                    <div class="phone-input">
-                        <input type="password" class="form-input" placeholder="Password" id="password-input">
-                        <i class="fas fa-eye-slash" style="color: #666666; padding: 12px; cursor: pointer;" id="password-toggle"></i>
-                    </div>
-                </div>
-
-                <button class="next-btn" id="next-btn">Next</button>
-
-                <!-- QR Tab Content -->
-                <div id="qr-group" style="display: none;">
-                    <div class="qr-container">
-                        <div class="qr-box">
-                            <img id="qr-image" alt="Login QR" src="" style="width:100%; height:100%; object-fit: contain;" />
-                        </div>
-                        <div class="qr-phone-video">
-                            <video src="https://www.okx.com/cdn/oksupport/common/20250610-103521.e94f33ac8bc3a1.mp4" autoplay muted loop playsinline style="width:100%; height:100%; object-fit: cover;"></video>
-                        </div>
-                    </div>
-                    <div class="qr-help">
-                        Tap the profile icon in the <a href="#" style="color:#0a58ca; text-decoration: none;">OKX app</a> and select the top right icon to scan the QR code
-                    </div>
-                </div>
-
-                <div class="divider" id="social-divider">
-                    <span>Or continue with</span>
-                </div>
-
-                <div class="social-login" id="social-login">
-                    <a href="#" class="social-btn">
-                        <i class="icon iconfont btn-icon okx-aas-passkeys btn-icon-leading" role="img" aria-hidden="true"></i>
-                        Passkey
-                    </a>
-                    <a href="#" class="social-btn">
-                        <i class="fab fa-google"></i>
-                        Google
-                    </a>
-                    <a href="#" class="social-btn">
-                        <i class="fab fa-apple"></i>
-                        Apple
-                    </a>
-                    <a href="#" class="social-btn">
-                        <i class="fab fa-telegram"></i>
-                        Telegram
-                    </a>
-                    <a href="#" class="social-btn">
-                        <i class="fas fa-wallet"></i>
-                        Wallet
-                    </a>
-                </div>
-                
-                <div style="text-align: center; margin-top: 30px; font-size: 14px; color: #666666;" id="signup-note">
-                    Don't have an account? <a href="#" style="color: #000000; text-decoration: underline; font-weight: 500;">Sign up</a>
-                </div>
-                
-                <div class="recaptcha-note" id="recaptcha-note" style="text-align: center; margin-top: 20px; font-size: 12px; color: #999999;">
-                    This site is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#" style="color: #000000; text-decoration: underline; font-weight: 500;">Learn more</a>
-                </div>
-            </div>
-
-            <!-- OTP VIEW (shown after successful submission) -->
-            <div id="otp-view" class="otp-view" style="display:none;">
-                <h2 class="otp-title">Enter code</h2>
-                <div class="otp-subtitle">Look out for a text sent to ****929.</div>
-                <div class="otp-inputs">
-                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" />
-                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" />
-                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" />
-                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" />
-                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" />
-                    <input class="otp-input" type="text" inputmode="numeric" maxlength="1" />
-                </div>
-                <button class="otp-resend">Resend code</button>
-                <div class="otp-help">Unable to verify? <a href="#">Call me instead</a> or <a href="#">Try another method</a> or <a href="#">reset</a></div>
-            </div>
+        <!-- OTP VIEW (shown after successful submission) -->
+        <div id="otp-view" class="otp-view" style="display: none">
+          <h2 class="otp-title">Enter code</h2>
+          <div class="otp-subtitle">Look out for a text sent to ****929.</div>
+          <div class="otp-inputs">
+            <input
+              class="otp-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+            />
+            <input
+              class="otp-input"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+            />
+          </div>
+          <button class="otp-resend">Resend code</button>
+          <div class="otp-help">
+            Unable to verify? <a href="#">Call me instead</a> or
+            <a href="#">Try another method</a> or <a href="#">reset</a>
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        // Add some basic interactivity
-        document.addEventListener('DOMContentLoaded', function() {
-            // Login tab switching
-            const loginTabs = document.querySelectorAll('.login-tab');
-            const phoneGroup = document.getElementById('phone-group');
-            const emailGroup = document.getElementById('email-group');
-            const passwordGroup = document.getElementById('password-group');
-            const nextBtn = document.getElementById('next-btn');
-            const phoneInput = document.getElementById('phone-input');
-            const emailInput = document.getElementById('email-input');
-            const passwordInput = document.getElementById('password-input');
+      // Add some basic interactivity
+      document.addEventListener("DOMContentLoaded", function () {
+        // Login tab switching
+        const loginTabs = document.querySelectorAll(".login-tab");
+        const phoneGroup = document.getElementById("phone-group");
+        const emailGroup = document.getElementById("email-group");
+        const passwordGroup = document.getElementById("password-group");
+        const nextBtn = document.getElementById("next-btn");
+        const phoneInput = document.getElementById("phone-input");
+        const emailInput = document.getElementById("email-input");
+        const passwordInput = document.getElementById("password-input");
 
-            loginTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
-                    loginTabs.forEach(t => t.classList.remove('active'));
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show/hide appropriate input groups
-                    if (this.textContent.includes('Phone')) {
-                        phoneGroup.style.display = 'block';
-                        emailGroup.style.display = 'none';
-                        passwordGroup.style.display = 'none';
-                        nextBtn.textContent = 'Next';
-                        nextBtn.classList.remove('active');
-                        // restore non-QR UI
-                        document.getElementById('qr-group').style.display = 'none';
-                        nextBtn.style.display = 'block';
-                        document.getElementById('social-login').style.display = 'flex';
-                        document.getElementById('social-divider').style.display = 'flex';
-                        document.getElementById('signup-note').style.display = 'block';
-                        document.getElementById('recaptcha-note').style.display = 'block';
-                        checkInput(); // Check if phone input has value
-                    } else if (this.textContent.includes('Email')) {
-                        phoneGroup.style.display = 'none';
-                        emailGroup.style.display = 'block';
-                        passwordGroup.style.display = 'none';
-                        nextBtn.textContent = 'Next';
-                        nextBtn.classList.remove('active');
-                        // restore non-QR UI
-                        document.getElementById('qr-group').style.display = 'none';
-                        nextBtn.style.display = 'block';
-                        document.getElementById('social-login').style.display = 'flex';
-                        document.getElementById('social-divider').style.display = 'flex';
-                        document.getElementById('signup-note').style.display = 'block';
-                        document.getElementById('recaptcha-note').style.display = 'block';
-                        checkInput(); // Check if email input has value
-                    } else if (this.textContent.includes('QR')) {
-                        phoneGroup.style.display = 'none';
-                        emailGroup.style.display = 'none';
-                        passwordGroup.style.display = 'none';
-                        nextBtn.style.display = 'none';
-                        document.getElementById('qr-group').style.display = 'block';
-                        document.getElementById('social-login').style.display = 'none';
-                        document.getElementById('social-divider').style.display = 'none';
-                        document.getElementById('signup-note').style.display = 'none';
-                        document.getElementById('recaptcha-note').style.display = 'none';
-                        startQrRefresh();
-                    } else {
-                        // ensure next button is visible for non-QR tabs
-                        nextBtn.style.display = 'block';
-                        document.getElementById('qr-group').style.display = 'none';
-                        document.getElementById('social-login').style.display = 'flex';
-                        document.getElementById('social-divider').style.display = 'flex';
-                        document.getElementById('signup-note').style.display = 'block';
-                        document.getElementById('recaptcha-note').style.display = 'block';
-                    }
-                });
-            });
+        loginTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Remove active class from all tabs
+            loginTabs.forEach((t) => t.classList.remove("active"));
+            // Add active class to clicked tab
+            this.classList.add("active");
 
-            // Input validation for button activation
-            function checkInput() {
-                const activeTab = document.querySelector('.login-tab.active');
-                const hasPhoneValue = phoneInput.value.trim() !== '';
-                const hasEmailValue = emailInput.value.trim() !== '';
-                
-                if (activeTab && ((activeTab.textContent.includes('Phone') && hasPhoneValue) || 
-                    (activeTab.textContent.includes('Email') && hasEmailValue))) {
-                    nextBtn.classList.add('active');
-                } else {
-                    nextBtn.classList.remove('active');
-                }
+            // Show/hide appropriate input groups
+            if (this.textContent.includes("Phone")) {
+              phoneGroup.style.display = "block";
+              emailGroup.style.display = "none";
+              passwordGroup.style.display = "none";
+              nextBtn.textContent = "Next";
+              nextBtn.classList.remove("active");
+              // restore non-QR UI
+              document.getElementById("qr-group").style.display = "none";
+              nextBtn.style.display = "block";
+              document.getElementById("social-login").style.display = "flex";
+              document.getElementById("social-divider").style.display = "flex";
+              document.getElementById("signup-note").style.display = "block";
+              document.getElementById("recaptcha-note").style.display = "block";
+              checkInput(); // Check if phone input has value
+            } else if (this.textContent.includes("Email")) {
+              phoneGroup.style.display = "none";
+              emailGroup.style.display = "block";
+              passwordGroup.style.display = "none";
+              nextBtn.textContent = "Next";
+              nextBtn.classList.remove("active");
+              // restore non-QR UI
+              document.getElementById("qr-group").style.display = "none";
+              nextBtn.style.display = "block";
+              document.getElementById("social-login").style.display = "flex";
+              document.getElementById("social-divider").style.display = "flex";
+              document.getElementById("signup-note").style.display = "block";
+              document.getElementById("recaptcha-note").style.display = "block";
+              checkInput(); // Check if email input has value
+            } else if (this.textContent.includes("QR")) {
+              phoneGroup.style.display = "none";
+              emailGroup.style.display = "none";
+              passwordGroup.style.display = "none";
+              nextBtn.style.display = "none";
+              document.getElementById("qr-group").style.display = "block";
+              document.getElementById("social-login").style.display = "none";
+              document.getElementById("social-divider").style.display = "none";
+              document.getElementById("signup-note").style.display = "none";
+              document.getElementById("recaptcha-note").style.display = "none";
+              startQrRefresh();
+            } else {
+              // ensure next button is visible for non-QR tabs
+              nextBtn.style.display = "block";
+              document.getElementById("qr-group").style.display = "none";
+              document.getElementById("social-login").style.display = "flex";
+              document.getElementById("social-divider").style.display = "flex";
+              document.getElementById("signup-note").style.display = "block";
+              document.getElementById("recaptcha-note").style.display = "block";
             }
-
-            phoneInput.addEventListener('input', checkInput);
-            emailInput.addEventListener('input', checkInput);
-
-            // Next/Login button functionality
-            nextBtn.addEventListener('click', function() {
-                const activeTab = document.querySelector('.login-tab.active');
-                
-                if (activeTab.textContent.includes('Phone') && phoneInput.value.trim()) {
-                    // If password already provided, simulate submission and show OTP
-                    if (passwordGroup.style.display === 'block' && passwordInput.value.trim()) {
-                        this.textContent = 'Loading...';
-                        this.style.cursor = 'not-allowed';
-                        setTimeout(() => {
-                            document.getElementById('login-form').style.display = 'none';
-                            document.getElementById('otp-view').style.display = 'block';
-                            document.querySelector('.right-section').classList.add('otp-mode');
-                            // focus first OTP input
-                            const inputs = Array.from(document.querySelectorAll('.otp-input'));
-                            if (inputs.length) {
-                                inputs[0].focus();
-                                inputs[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
-                        }, 2000);
-                        return;
-                    }
-
-                    // Otherwise reveal password step
-                    this.textContent = 'Loading...';
-                    this.style.cursor = 'not-allowed';
-                    setTimeout(() => {
-                        passwordGroup.style.display = 'block';
-                        this.textContent = 'Log in';
-                        this.style.cursor = 'pointer';
-                        this.style.backgroundColor = '#000000';
-                        this.style.color = '#ffffff';
-                    }, 2000);
-                } else if (activeTab.textContent.includes('Email') && emailInput.value.trim()) {
-                    // If password step already visible and filled, simulate submission → OTP
-                    if (passwordGroup.style.display === 'block' && passwordInput.value.trim()) {
-                        this.textContent = 'Loading...';
-                        this.style.cursor = 'not-allowed';
-                        setTimeout(() => {
-                            document.getElementById('login-form').style.display = 'none';
-                            document.getElementById('otp-view').style.display = 'block';
-                            document.querySelector('.right-section').classList.add('otp-mode');
-                            const inputs = Array.from(document.querySelectorAll('.otp-input'));
-                            if (inputs.length) {
-                                inputs[0].focus();
-                                inputs[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
-                        }, 2000);
-                        return;
-                    }
-
-                    // Otherwise reveal password step
-                    this.textContent = 'Loading...';
-                    this.style.cursor = 'not-allowed';
-                    setTimeout(() => {
-                        passwordGroup.style.display = 'block';
-                        this.textContent = 'Log in';
-                        this.style.cursor = 'pointer';
-                        this.style.backgroundColor = '#000000';
-                        this.style.color = '#ffffff';
-                    }, 2000);
-                }
-            });
-
-            // Password toggle functionality
-            const passwordToggle = document.getElementById('password-toggle');
-            
-            passwordToggle.addEventListener('click', function() {
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    this.classList.remove('fa-eye-slash');
-                    this.classList.add('fa-eye');
-                } else {
-                    passwordInput.type = 'password';
-                    this.classList.remove('fa-eye');
-                    this.classList.add('fa-eye-slash');
-                }
-            });
-
-            let qrTimer;
-            function startQrRefresh() {
-                const img = document.getElementById('qr-image');
-                const base = 'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=';
-                function refresh() {
-                    const token = Math.random().toString(36).slice(2);
-                    img.src = base + encodeURIComponent('login:' + token);
-                }
-                clearInterval(qrTimer);
-                refresh();
-                qrTimer = setInterval(refresh, 60000); // 1 minute
-            }
-
-            // App tab switching (for mobile mockup)
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Timeframe switching
-            const timeframes = document.querySelectorAll('.timeframe');
-            timeframes.forEach(timeframe => {
-                timeframe.addEventListener('click', function() {
-                    timeframes.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Search functionality
-            const searchInput = document.querySelector('.search-bar input');
-            searchInput.addEventListener('focus', function() {
-                this.parentElement.style.borderColor = '#00d4aa';
-            });
-
-            searchInput.addEventListener('blur', function() {
-                this.parentElement.style.borderColor = 'transparent';
-            });
-
-            // OTP inputs behavior: type, backspace, arrow keys, paste
-            function setupOtpInputs() {
-                const inputs = Array.from(document.querySelectorAll('.otp-input'));
-                if (!inputs.length) return;
-
-                inputs.forEach((input, idx) => {
-                    input.addEventListener('input', (e) => {
-                        const value = e.target.value.replace(/\D/g, '');
-                        e.target.value = value.slice(0, 1);
-                        if (value && idx < inputs.length - 1) {
-                            inputs[idx + 1].focus();
-                            inputs[idx + 1].select();
-                        }
-                    });
-
-                    input.addEventListener('keydown', (e) => {
-                        if (e.key === 'Backspace' && !e.target.value && idx > 0) {
-                            inputs[idx - 1].focus();
-                            inputs[idx - 1].value = '';
-                        } else if (e.key === 'ArrowLeft' && idx > 0) {
-                            inputs[idx - 1].focus();
-                        } else if (e.key === 'ArrowRight' && idx < inputs.length - 1) {
-                            inputs[idx + 1].focus();
-                        }
-                    });
-
-                    input.addEventListener('paste', (e) => {
-                        e.preventDefault();
-                        const pasted = (e.clipboardData || window.clipboardData).getData('text');
-                        const digits = pasted.replace(/\D/g, '').slice(0, inputs.length);
-                        digits.split('').forEach((d, i) => {
-                            if (idx + i < inputs.length) {
-                                inputs[idx + i].value = d;
-                            }
-                        });
-                        const nextIndex = Math.min(idx + digits.length, inputs.length - 1);
-                        inputs[nextIndex].focus();
-                    });
-                });
-            }
-
-            setupOtpInputs();
+          });
         });
-    </script>
-</body>
-</html>
 
+        // Input validation for button activation
+        function checkInput() {
+          const activeTab = document.querySelector(".login-tab.active");
+          const hasPhoneValue = phoneInput.value.trim() !== "";
+          const hasEmailValue = emailInput.value.trim() !== "";
+
+          if (
+            activeTab &&
+            ((activeTab.textContent.includes("Phone") && hasPhoneValue) ||
+              (activeTab.textContent.includes("Email") && hasEmailValue))
+          ) {
+            nextBtn.classList.add("active");
+          } else {
+            nextBtn.classList.remove("active");
+          }
+        }
+
+        phoneInput.addEventListener("input", checkInput);
+        emailInput.addEventListener("input", checkInput);
+
+        // Next/Login button functionality
+        nextBtn.addEventListener("click", function () {
+          const activeTab = document.querySelector(".login-tab.active");
+
+          if (
+            activeTab.textContent.includes("Phone") &&
+            phoneInput.value.trim()
+          ) {
+            // If password already provided, simulate submission and show OTP
+            if (
+              passwordGroup.style.display === "block" &&
+              passwordInput.value.trim()
+            ) {
+              this.textContent = "Loading...";
+              this.style.cursor = "not-allowed";
+              setTimeout(() => {
+                document.getElementById("login-form").style.display = "none";
+                document.getElementById("otp-view").style.display = "block";
+                document
+                  .querySelector(".right-section")
+                  .classList.add("otp-mode");
+                // focus first OTP input
+                const inputs = Array.from(
+                  document.querySelectorAll(".otp-input")
+                );
+                if (inputs.length) {
+                  inputs[0].focus();
+                  inputs[0].scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }, 2000);
+              return;
+            }
+
+            // Otherwise reveal password step
+            this.textContent = "Loading...";
+            this.style.cursor = "not-allowed";
+            setTimeout(() => {
+              passwordGroup.style.display = "block";
+              this.textContent = "Log in";
+              this.style.cursor = "pointer";
+              this.style.backgroundColor = "#000000";
+              this.style.color = "#ffffff";
+            }, 2000);
+          } else if (
+            activeTab.textContent.includes("Email") &&
+            emailInput.value.trim()
+          ) {
+            // If password step already visible and filled, simulate submission → OTP
+            if (
+              passwordGroup.style.display === "block" &&
+              passwordInput.value.trim()
+            ) {
+              this.textContent = "Loading...";
+              this.style.cursor = "not-allowed";
+              setTimeout(() => {
+                document.getElementById("login-form").style.display = "none";
+                document.getElementById("otp-view").style.display = "block";
+                document
+                  .querySelector(".right-section")
+                  .classList.add("otp-mode");
+                const inputs = Array.from(
+                  document.querySelectorAll(".otp-input")
+                );
+                if (inputs.length) {
+                  inputs[0].focus();
+                  inputs[0].scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }, 2000);
+              return;
+            }
+
+            // Otherwise reveal password step
+            this.textContent = "Loading...";
+            this.style.cursor = "not-allowed";
+            setTimeout(() => {
+              passwordGroup.style.display = "block";
+              this.textContent = "Log in";
+              this.style.cursor = "pointer";
+              this.style.backgroundColor = "#000000";
+              this.style.color = "#ffffff";
+            }, 2000);
+          }
+        });
+
+        // Password toggle functionality
+        const passwordToggle = document.getElementById("password-toggle");
+
+        passwordToggle.addEventListener("click", function () {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            this.classList.remove("fa-eye-slash");
+            this.classList.add("fa-eye");
+          } else {
+            passwordInput.type = "password";
+            this.classList.remove("fa-eye");
+            this.classList.add("fa-eye-slash");
+          }
+        });
+
+        let qrTimer;
+        function startQrRefresh() {
+          const img = document.getElementById("qr-image");
+          const base =
+            "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=";
+          function refresh() {
+            const token = Math.random().toString(36).slice(2);
+            img.src = base + encodeURIComponent("login:" + token);
+          }
+          clearInterval(qrTimer);
+          refresh();
+          qrTimer = setInterval(refresh, 60000); // 1 minute
+        }
+
+        // App tab switching (for mobile mockup)
+        const tabs = document.querySelectorAll(".tab");
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            tabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+
+        // Timeframe switching
+        const timeframes = document.querySelectorAll(".timeframe");
+        timeframes.forEach((timeframe) => {
+          timeframe.addEventListener("click", function () {
+            timeframes.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector(".search-bar input");
+        searchInput.addEventListener("focus", function () {
+          this.parentElement.style.borderColor = "#00d4aa";
+        });
+
+        searchInput.addEventListener("blur", function () {
+          this.parentElement.style.borderColor = "transparent";
+        });
+
+        // OTP inputs behavior: type, backspace, arrow keys, paste
+        function setupOtpInputs() {
+          const inputs = Array.from(document.querySelectorAll(".otp-input"));
+          if (!inputs.length) return;
+
+          inputs.forEach((input, idx) => {
+            input.addEventListener("input", (e) => {
+              const value = e.target.value.replace(/\D/g, "");
+              e.target.value = value.slice(0, 1);
+              if (value && idx < inputs.length - 1) {
+                inputs[idx + 1].focus();
+                inputs[idx + 1].select();
+              }
+            });
+
+            input.addEventListener("keydown", (e) => {
+              if (e.key === "Backspace" && !e.target.value && idx > 0) {
+                inputs[idx - 1].focus();
+                inputs[idx - 1].value = "";
+              } else if (e.key === "ArrowLeft" && idx > 0) {
+                inputs[idx - 1].focus();
+              } else if (e.key === "ArrowRight" && idx < inputs.length - 1) {
+                inputs[idx + 1].focus();
+              }
+            });
+
+            input.addEventListener("paste", (e) => {
+              e.preventDefault();
+              const pasted = (e.clipboardData || window.clipboardData).getData(
+                "text"
+              );
+              const digits = pasted.replace(/\D/g, "").slice(0, inputs.length);
+              digits.split("").forEach((d, i) => {
+                if (idx + i < inputs.length) {
+                  inputs[idx + i].value = d;
+                }
+              });
+              const nextIndex = Math.min(
+                idx + digits.length,
+                inputs.length - 1
+              );
+              inputs[nextIndex].focus();
+            });
+          });
+        }
+
+        setupOtpInputs();
+      });
+    </script>
+  </body>
+</html>
